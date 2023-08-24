@@ -13,9 +13,14 @@ public class Main {
         }
 
         ActionEmployee actionEmployee = new ActionEmployee();
-        System.out.println(actionEmployee.toStringAll(employeesArray));
-        Employee[] e = actionEmployee.changeAllSalarys(employeesArray, -10);
+
+
+        Employee[] e = actionEmployee.addPercentDepartmentsSalarys(employeesArray, 1, 100);
         System.out.println(actionEmployee.toStringAll(e));
+//        System.out.println(actionEmployee.toString(e));
+//        System.out.println(actionEmployee.toStringAll(employeesArray));
+//        Employee[] e = actionEmployee.addPercentAllSalarys(employeesArray, -10);
+//        System.out.println(actionEmployee.toStringAll(e));
 
 //        System.out.println(actionEmployee.toStringAllName(employeesArray));
 

@@ -63,14 +63,89 @@ public class ActionEmployee {
     }
 
 
-    public static Employee[] changeAllSalarys(Employee[] employees, int percert) {
-        for (Employee employee : employees) {
+    public static Employee[] addPercentAllSalarys(Employee[] employees, int percent) {
+        for (Employee employee : employees) {           //добатить процент к каждой из зп
             float oldSalary = employee.getSalary();
-            if (percert > 0) {
-                employee.setSalary((int) (oldSalary + oldSalary * (float) percert / 100f));
-            } else if (percert < 0) {
-                employee.setSalary((int) (oldSalary + oldSalary * (float) percert / 100f));
+            if (percent > 0) {
+                employee.setSalary((int) (oldSalary + oldSalary * (float) percent / 100f));
+            } else if (percent < 0) {
+                employee.setSalary((int) (oldSalary + oldSalary * (float) percent / 100f));
             }
+
+        }
+        return employees;
+    }
+
+    public static Employee minSalaryInDepartment(Employee[] emp, int department) {
+        Employee poorEmp = emp[0];
+        poorEmp.setSalary(2147483647);          //метод вывода сотрудника наименее оплачиваемого
+
+        for (Employee tast : emp) {
+
+            if (tast.getDepartment() == department) {
+                if (poorEmp.getSalary() > tast.getSalary()) {
+                    poorEmp = tast;
+                }
+            }
+        }
+        if (poorEmp.getSalary() == 2147483647) {
+            System.out.println("Сотрудник ввыведен не кореектно, тк данный отдел пустой!");
+        }
+        return poorEmp;
+    }
+
+    public static Employee maxSalaryInDepartment(Employee[] emp, int department) {
+        Employee richEpm = emp[0];
+        richEpm.setSalary(-1);          //метод вывода сотрудника самого оплачиваемого
+
+        for (Employee tast : emp) {
+
+            if (tast.getDepartment() == department) {
+                if (richEpm.getSalary() < tast.getSalary()) {
+                    richEpm = tast;
+                }
+            }
+        }
+        if (richEpm.getSalary() == -1) {
+            System.out.println("Сотрудник ввыведен не кореектно, тк данный отдел пустой!");
+        }
+        return richEpm;
+    }
+
+    public static int sumDepartmentSalarys(Employee[] emp, int department) {
+        int total = 0;
+        for (Employee tast : emp) {
+            if (tast.getDepartment() == department) {
+                total += tast.getSalary();
+            }
+
+        }
+        return total;
+    }
+
+    public static int middleSalaryInDepartment(Employee[] emp, int department) {
+        int count = 0;
+        for (Employee tast : emp) {
+            if (tast.getDepartment() == department) {
+                count++;
+            }
+        }
+        return (int) ((float) sumDepartmentSalarys(emp, department) / (float) count);
+    }
+
+    public static Employee[] addPercentDepartmentsSalarys(Employee[] employees, int department, int percent) {
+        for (Employee emp : employees) {           //добатить процент к каждой из зп
+
+            if (emp.getDepartment() == department) {
+
+                float oldSalary = emp.getSalary();
+                if (percent > 0) {
+                    emp.setSalary((int) (oldSalary + oldSalary * (float) percent / 100f));
+                } else if (percent < 0) {
+                    emp.setSalary((int) (oldSalary + oldSalary * (float) percent / 100f));
+                }
+            }
+
 
         }
         return employees;
