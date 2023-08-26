@@ -28,9 +28,9 @@ public class ActionEmployee {
 
     public static Employee findMinSalary(Employee[] employees) {
         Employee minSalary = employees[0];
-        for (Employee test : employees) {          //метод поиска сотрудника с мин зп
-            if (test.getSalary() < minSalary.getSalary()) {
-                minSalary = test;
+        for (Employee employee : employees) {          //метод поиска сотрудника с мин зп
+            if (employee.getSalary() < minSalary.getSalary()) {
+                minSalary = employee;
             }
         }
         return minSalary;
@@ -48,7 +48,7 @@ public class ActionEmployee {
 
     public static int middleSalary(Employee[] employees) {       //метод средней зп
         return (int) ((float) sumAllSalarys(employees) / (float) employees.length);
-    }
+    }       //учесть нулл
 
 
     public static String toStringAllName(Employee[] employees) {
@@ -78,8 +78,8 @@ public class ActionEmployee {
 
     public static Employee minSalaryInDepartment(Employee[] emp, int department) {
         Employee poorEmp = emp[0];
-        poorEmp.setSalary(2147483647);          //метод вывода сотрудника наименее оплачиваемого
-
+        poorEmp.setSalary(Integer.MAX_VALUE);          //метод вывода сотрудника наименее оплачиваемого
+                                                    //в департаменте
         for (Employee tast : emp) {
 
             if (tast.getDepartment() == department) {
@@ -88,6 +88,7 @@ public class ActionEmployee {
                 }
             }
         }
+
         if (poorEmp.getSalary() == 2147483647) {
             System.out.println("Сотрудник ввыведен не кореектно, тк данный отдел пустой!");
         }
@@ -96,7 +97,7 @@ public class ActionEmployee {
 
     public static Employee maxSalaryInDepartment(Employee[] emp, int department) {
         Employee richEpm = emp[0];
-        richEpm.setSalary(-1);          //метод вывода сотрудника самого оплачиваемого
+        richEpm.setSalary(Integer.MIN_VALUE);          //метод вывода сотрудника самого оплачиваемого в департ.
 
         for (Employee tast : emp) {
 
@@ -115,7 +116,7 @@ public class ActionEmployee {
     public static int sumDepartmentSalarys(Employee[] emp, int department) {
         int total = 0;
         for (Employee tast : emp) {
-            if (tast.getDepartment() == department) {
+            if (tast.getDepartment() == department) {           // сумма зарплат департамента
                 total += tast.getSalary();
             }
 
@@ -124,7 +125,7 @@ public class ActionEmployee {
     }
 
     public static int middleSalaryInDepartment(Employee[] emp, int department) {
-        int count = 0;
+        int count = 0;                                      //средняя зарплата по департаменту
         for (Employee tast : emp) {
             if (tast.getDepartment() == department) {
                 count++;
@@ -133,16 +134,14 @@ public class ActionEmployee {
         return (int) ((float) sumDepartmentSalarys(emp, department) / (float) count);
     }
 
-    public static Employee[] addPercentDepartmentsSalarys(Employee[] employees, int department, int percent) {
-        for (Employee emp : employees) {           //добатить процент к каждой из зп
+    public static Employee[] multiplyPercentDepartmentsSalarys(Employee[] employees, int department, float percent) {
+        for (Employee emp : employees) {           //добатить процент к каждой из зп департамента
 
             if (emp.getDepartment() == department) {
 
                 float oldSalary = emp.getSalary();
                 if (percent > 0) {
-                    emp.setSalary((int) (oldSalary + oldSalary * (float) percent / 100f));
-                } else if (percent < 0) {
-                    emp.setSalary((int) (oldSalary + oldSalary * (float) percent / 100f));
+                    emp.setSalary((int) (oldSalary * percent));
                 }
             }
 
@@ -150,4 +149,6 @@ public class ActionEmployee {
         }
         return employees;
     }
+
+
 }
