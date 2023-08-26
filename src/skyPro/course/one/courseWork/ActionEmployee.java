@@ -5,7 +5,7 @@ public class ActionEmployee {
         return "First name " + employee.getFirstName() + ",\nlast name " + employee.getLastName() +
                 ",\nmiddle name " + employee.getMiddleName() +
                 ",\ndepartment " + employee.getDepartment() +
-                ",\nSalary = " + employee.getSalary() +         //метод вывода сотрудника
+                ",\nSalary = " + employee.getSalary() +
                 ",\nid = " + employee.getId();
     }
 
@@ -14,14 +14,13 @@ public class ActionEmployee {
         for (Employee test : employees) {
             finishString += toString(test) + "\n------------------------\n";
         }
-        //метод вывода списка сотрудников
         return finishString;
     }
 
 
     public static int sumAllSalarys(Employee[] employees) {
         int total = 0;
-        for (Employee test : employees) {          //метод суммы всех зп
+        for (Employee test : employees) {
             total += test.getSalary();
         }
         return total;
@@ -30,7 +29,7 @@ public class ActionEmployee {
 
     public static Employee findMinSalary(Employee[] employees) {
         Employee minSalary = employees[0];
-        for (Employee employee : employees) {          //метод поиска сотрудника с мин зп
+        for (Employee employee : employees) {
             if (employee.getSalary() < minSalary.getSalary()) {
                 minSalary = employee;
             }
@@ -40,7 +39,7 @@ public class ActionEmployee {
 
     public static Employee findMaxSalary(Employee[] employees) {
         Employee maxSalary = employees[0];
-        for (Employee test : employees) {          //метод поиска сотрудника с макс зп
+        for (Employee test : employees) {
             if (test.getSalary() > maxSalary.getSalary()) {
                 maxSalary = test;
             }
@@ -48,14 +47,13 @@ public class ActionEmployee {
         return maxSalary;
     }
 
-    public static int middleSalary(Employee[] employees) {       //метод средней зп
+    public static int middleSalary(Employee[] employees) {
         return (int) ((float) sumAllSalarys(employees) / (float) employees.length);
-    }       //учесть нулл
-
+    }
 
     public static String toStringAllName(Employee[] employees) {
         String finishString = "--------------------\n";
-        for (Employee test : employees) {                       //метод вывода Ф.И.О. всех сотрудников
+        for (Employee test : employees) {
             finishString += "First name " + test.getFirstName() + "," +
                     "\nLast name " + test.getLastName() +
                     ",\nMiddle name " + test.getMiddleName() +

@@ -15,11 +15,10 @@ public class Employee {
     public Employee(String firstName, String lastName, String middleName, int salary, int department) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.middleName = middleName;               //constructor
+        this.middleName = middleName;
         this.salary = salary;
         this.department = department;
         id = counter++;
-
     }
 
     public void setSalary(int salary) {
