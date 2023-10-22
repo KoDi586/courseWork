@@ -155,9 +155,27 @@ public class ActionEmployee {
         return employees;
     }
 
-    public void addEmployee(EmployeeBook employeeMap, Employee employee) {
+    public static void addEmployee(EmployeeBook employeeMap, Employee employee) {
         employeeMap.put(employee.getFirstName() + " " + employee.getLastName() +
                 " " + employee.getMiddleName(), employee);
+    }
+
+    public static void deleteEmployee(EmployeeBook employeeMap, String name) {
+        if (employeeMap.getAllEmployeeName().contains(name)) {
+            employeeMap.getEmployeesMap().remove(name);
+        } else {
+            System.out.println("такого сотрудника итак нет");
+        }
+
+    }
+
+    public static Employee findEmployee(EmployeeBook employeeMap, String name) {
+        if (employeeMap.getAllEmployeeName().contains(name)) {
+            return employeeMap.getEmployeesMap().get(name);
+        } else {
+            System.out.println("сотрудник не найден");
+            return null;
+        }
     }
 
 

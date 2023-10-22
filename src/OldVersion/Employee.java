@@ -21,7 +21,6 @@ public class Employee {
         id = counter++;
 
     }
-
     public void setSalary(int salary) {
         this.salary = salary;
     }
@@ -58,4 +57,3 @@ public class Employee {
         return counter;
     }
 }
-
